@@ -46,7 +46,3 @@ async def update_student(id:UUID, student:StudentPatch, session:AsyncSession=Dep
 @router.delete("/{id}", response_model=StudentOut)
 async def delete_student(id:UUID,session:AsyncSession=Depends(get_session)):
     return await StudentService.delete_by_id(id, session)
-
-@router.delete("/")
-async def delete_all_student(session:AsyncSession=Depends(get_session)):
-    return await StudentService.delete_all(session)

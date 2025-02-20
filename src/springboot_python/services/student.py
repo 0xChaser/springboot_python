@@ -50,8 +50,3 @@ class StudentService:
         if not _Student:
             raise StudentNotFound
         return _Student
-    
-    @staticmethod
-    async def delete_all(session:AsyncSession) -> None:
-        await student.StudentDao(session).delete_all()
-        return []
