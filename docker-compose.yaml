@@ -18,6 +18,13 @@ services:
      restart: always
      networks:
        - "springboot_python_network"
+       - traefik-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.springboot-back.rule=Host(`springboot.flo-isk.fr`)"
+      - "traefik.http.routers.springboot-back.entrypoints=websecure"
+      - "traefik.http.routers.springboot-back.tls=true"
+      - "traefik.docker.network=traefik-net"
 
    springboot_python_db:
     container_name: "springboot_python_db"
@@ -35,13 +42,7 @@ services:
       - .env
     networks:
       - "springboot_python_network"
-      - traefik-net
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.chasercorp-back.rule=Host(`chasercorp.flo-isk.fr`)"
-      - "traefik.http.routers.chasercorp-back.entrypoints=websecure"
-      - "traefik.http.routers.chasercorp-back.tls=true"
-      - "traefik.docker.network=traefik-net"
+
 
    springboot_python_pgadmin:
     container_name: "springboot_python_pgadmin"
