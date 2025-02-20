@@ -1,24 +1,23 @@
 services:
-
-   springboot_python_back:
-     image: springboot_python_back:latest
-     container_name: "springboot_python"
-     build:
-       context: .
-       dockerfile: Dockerfile
-       target: development
-     volumes:
-       - .:/app
-       - ~/.ssh:/root/.ssh
-       - /root/config
-     ports:
-       - "8000:8000"
-     depends_on:
-       - springboot_python_db
-     restart: always
-     networks:
-       - "springboot_python_network"
-       - traefik-net
+  springboot_python_back:
+    image: springboot_python_back:latest
+    container_name: "springboot_python"
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    volumes:
+      - .:/app
+      - ~/.ssh:/root/.ssh
+      - /root/config
+    ports:
+      - "8000:8000"
+    depends_on:
+      - springboot_python_db
+    restart: always
+    networks:
+      - "springboot_python_network"
+      - traefik-net
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.springboot-back.rule=Host(`springboot.flo-isk.fr`)"
@@ -26,7 +25,7 @@ services:
       - "traefik.http.routers.springboot-back.tls=true"
       - "traefik.docker.network=traefik-net"
 
-   springboot_python_db:
+  springboot_python_db:
     container_name: "springboot_python_db"
     image: postgres:latest
     restart: always
@@ -43,8 +42,7 @@ services:
     networks:
       - "springboot_python_network"
 
-
-   springboot_python_pgadmin:
+  springboot_python_pgadmin:
     container_name: "springboot_python_pgadmin"
     image: dpage/pgadmin4:latest
     environment:
