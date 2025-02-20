@@ -27,7 +27,7 @@ FROM base AS development
 WORKDIR /app
 
 # Install the project dependencies
-RUN uv pip install --no-cache-dir -e .[dev]
+RUN uv pip install --no-cache-dir -e .[dev] --system
 
 ENTRYPOINT ["springboot_python"]
 CMD ["dev"]
