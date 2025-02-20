@@ -10,7 +10,7 @@ from springboot_python.api.v1 import router
 from springboot_python.models.keycloak import TokenResponse, UserInfo
 
 app = FastAPI(
-    title=__package__.replace("_", " ").title(),
+    title="KeyCloak Python",
     version=version(__package__),
     root_path="/api/v1",
     )
