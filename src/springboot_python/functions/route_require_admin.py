@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Depends
 from fastapi.security import HTTPBearer
-from springboot_python.api.v1.student import router as StudentRouter
-from springboot_python.api.v1.book import router as BookRouter
+
 
 bearer_scheme = HTTPBearer()
 
