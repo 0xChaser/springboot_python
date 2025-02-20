@@ -19,9 +19,3 @@ def route_require_token(router: APIRouter) -> APIRouter:
         router.routes.append(route)
     
     return router
-
-main_router = APIRouter()
-
-for api_router in (StudentRouter, BookRouter):
-    route_require_token(api_router)
-    main_router.include_router(api_router)
