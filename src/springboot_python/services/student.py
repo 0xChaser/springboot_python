@@ -12,13 +12,13 @@ from springboot_python.schemas.page import Page
 class StudentService:
 
     @staticmethod
-    async def add_Student(Student_data:StudentIn, session:AsyncSession):
+    async def add_student(Student_data:StudentIn, session:AsyncSession):
         new_Student = await student.StudentDao(session).create(Student_data.model_dump())
         logger.info(f"New Student created successfully: {new_Student}")
         return new_Student
     
     @staticmethod
-    async def get_all_Student(offset:int, limit:int, session:AsyncSession) -> Page[StudentOut]:
+    async def get_all_student(offset:int, limit:int, session:AsyncSession) -> Page[StudentOut]:
         all_Student = await student.StudentDao(session).get_all(offset=offset, limit=limit)
         return Page(
             total = await student.StudentDao(session).count(),
