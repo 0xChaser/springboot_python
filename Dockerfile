@@ -17,6 +17,8 @@ ENV PYTHONUNBUFFERED=1
 
 RUN pip install -U pip wheel
 
+RUN pip install uv
+
 COPY . /app
 
 SHELL ["/bin/bash", "-c"]
@@ -25,7 +27,7 @@ FROM base AS development
 WORKDIR /app
 
 # Install the project dependencies
-RUN pip install --no-cache-dir -e .[dev]
+RUN uv pip install --no-cache-dir -e .[dev]
 
 ENTRYPOINT ["springboot_python"]
 CMD ["dev"]
@@ -42,7 +44,7 @@ RUN addgroup --gid 1001 --system springboot_python && \
 USER springboot_python
 WORKDIR /app
 
-RUN pip install --no-cache-dir -e .
+RUN uv pip install --no-cache-dir -e .
 
 # Expose the application port
 EXPOSE 8000
