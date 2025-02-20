@@ -1,0 +1,2 @@
+class SpringbootPythonCLIException(Exception):
+    pass
