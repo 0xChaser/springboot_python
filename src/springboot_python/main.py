@@ -3,7 +3,8 @@ from importlib.metadata import version
 from fastapi import FastAPI, Request, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, RedirectResponse
-from fastapi.openapi.docs import get_swagger_ui_html
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+
 
 from springboot_python.api.v1 import router
 
@@ -11,11 +12,6 @@ app = FastAPI(
     title=__package__.replace("_", " ").title(),
     version=version(__package__),
     root_path="/api/v1",
-    swagger_ui_parameters={
-        # "docExpansion": "none", Uncomment for better view of each endpoints when refresh on /docs
-        "syntaxHighlight.theme": "obsidian", # Sadge, it's unavailable
-        # "filter": True, Uncomment for filter on endpoint name
-    }
     )
 
 
@@ -36,4 +32,4 @@ async def default_exception_handler(request: Request, exc: Exception):
 
 @app.get("/", include_in_schema=False)
 async def redirect_depending_user_agent(request: Request):
-    return RedirectResponse("/api")
+    return RedirectResponse("/docs")
