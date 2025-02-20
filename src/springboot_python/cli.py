@@ -5,8 +5,8 @@ from rich import print
 from rich.padding import Padding
 from rich.panel import Panel
 
-from project_template.exceptions import ProjectTemplateCLIException
-from project_template.settings import LogLevel, settings
+from springboot_python.exceptions import SpringbootPythonCLIException
+from springboot_python.settings import LogLevel, settings
 
 try:
     import uvicorn
